@@ -1,0 +1,58 @@
+﻿<Window x:Class="MemeGallery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MemeGallery"
+        xmlns:wpfAnimatedGif="clr-namespace:WpfAnimatedGif;assembly=WpfAnimatedGif"
+        Title="Стикеры/Гифки/Мемы"
+        Height="911" Width="1200">
+    <Grid Height="876" VerticalAlignment="Top" Margin="0,0,10,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="11*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="532"/>
+            <RowDefinition Height="268"/>
+        </Grid.RowDefinitions>
+
+        <!-- Левый столбец (список мемов и фильтр) -->
+        <StackPanel Grid.Column="0" Margin="22,10,25,10">
+            <ComboBox x:Name="CategoryComboBox" SelectionChanged="CategoryComboBox_SelectionChanged" Margin="10" Text="Категории"/>
+            <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged" LostFocus="SearchTextBox_LostFocus" GotFocus="SearchTextBox_GotFocus" Text="Поиск по названию..." Margin="10" />
+            <Button Content="Добавить мем" Click="AddMemeButton_Click" Margin="10"/>
+            <Button Content="Удалить мем" Click="DeleteMemeButton_Click" Margin="10"/>
+            <Button Content="Сохранить мемы" Click="SaveMemeListButton_Click" Margin="10"/>
+            <Button Content="Загрузить мемы" Click="LoadMemeListButton_Click" Margin="10"/>
+
+            <ScrollViewer Height="272" VerticalScrollBarVisibility="Auto" Margin="10">
+                <ListBox x:Name="MemeListBox" SelectionChanged="MemeListBox_SelectionChanged" Margin="10" Height="250"/>
+            </ScrollViewer>
+            <!-- Список тегов под списком мемов -->
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="10,15,25,-76">
+
+            <TextBlock Text="Теги:" FontWeight="Bold" Margin="10,10,10,-12" Height="18" Width="295"/>
+            <ScrollViewer Height="272" VerticalScrollBarVisibility="Auto" Margin="10" Width="330">
+                <ListBox x:Name="AllTagsListBox" Width="294" Height="268"/>
+            </ScrollViewer>
+        </StackPanel>
+
+        <!-- Правый столбец (детали выбранного мема) -->
+        <StackPanel Grid.Column="1" Margin="10,10,57,10">
+            <Image x:Name="MemeImage" Width="745" Height="515" Stretch="Uniform"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,-66">
+            <TextBlock x:Name="MemeName" FontWeight="Bold" FontSize="20" TextAlignment="Center" Height="52" Width="400"/>
+            <TextBlock x:Name="MemeCategory" FontStyle="Italic" Margin="10" TextAlignment="Center" Height="37" Width="400"/>
+            <ScrollViewer Height="100" VerticalScrollBarVisibility="Auto" Margin="10" Width="330">
+                <ListBox x:Name="TagsListBox" Width="294"/>
+            </ScrollViewer>
+            <TextBox x:Name="TagTextBox" Margin="10,10,10,0" GotFocus="TagTextBox_GotFocus" LostFocus="TagTextBox_LostFocus" Text="Добавить тег" Width="295"/>
+            <Button Content="Добавить тег" Click="AddTagButton_Click" Margin="10,10,10,0" Width="301"/>
+            <Button Content="Удалить тег" Click="RemoveTagButton_Click" Margin="10,0,10,10" Width="301"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
